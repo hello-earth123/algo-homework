@@ -23,7 +23,6 @@ def f(idx):
             if out[i]:
                 print(arr[i], end = ' ')
         print()
-
         return
 
     # 유도조건 (N-1)까지는 뽑을지 말지 결정 가능.
