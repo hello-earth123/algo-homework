@@ -9,7 +9,8 @@ for test_case in range(1, T + 1):
     costs = list(map(int, input().split()))
     use = list(map(int, input().split()))
     
-    # dp의 상태: 개울 수
+    # dp의 상태: 개월 수
+    # dp의 값: 총 돈의 값
     dp = [0] * 13
 
     for i in range(1, 13):
