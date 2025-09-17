@@ -6,7 +6,6 @@
 # 나무가 있거나 범위를 벗어나면 제자리에 존재
 from collections import deque
 def goal():
-    visited = [[False] * N for _ in range(N)]
     for r in range(N):
         for c in range(N):
             # 시작 위치
@@ -15,29 +14,27 @@ def goal():
             # 목적지
             elif road[r][c] == 'Y':
                 goal_row, goal_col  = r, c
-            # # 벽 막기
-            # elif road[r][c] == 'T':
-            #     visited[r][c] = True
-
+                
     queue = deque([(start_row, start_col)])
-    visited[start_row][start_col] = True
-
     # delta (상에서 시작 -> 시계방향) 
     dr = [-1, 0, 1, 0]
     dc = [0, 1, 0, -1]
     d = 0   # 방향
     result = 0
+    
     while queue:
         for dir in command:
-            if not queue:
-                r, c = queue.popleft()
-
+            # if queue:
             if dir == 'A':
+                r, c = queue.popleft()
                 # 이동
                 nr, nc = r + dr[d % 4], c + dc[d % 4]
                 if 0 <= nr < N and 0 <= nc < N and road[nr][nc] != 'T':
-                    visited[nr][nc] = True
+                    # 이동 가능하면 전진
                     queue.append((nr, nc))
+                else:
+                    # 아니면 다시 넣어놓기
+                    queue.append((r, c))
             elif dir == 'L':
                 # 방향 회전
                 d -= 1
@@ -50,9 +47,6 @@ def goal():
             result = 1
 
     return result
-
-
-
 
 T = int(input())
 for test_case in range(1, T + 1):

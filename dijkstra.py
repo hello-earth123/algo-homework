@@ -11,7 +11,7 @@ def dijkstra(start_node):
         # 최단 거리를 보장해야 하기 때문에
         if dists[node] < dist:
             continue
-
+        
         for next_dist, next_node in graph[node]:
             # 다음 노드로 가기 위한 누적 거리 계산
             new_dist = dist + next_dist   # 누적거리 = 현재까지의 거리 + 다음 거리                
